@@ -1,0 +1,80 @@
+type Query {
+  users: [User]!
+  user(id: ID!): User!
+  teams: [Team]!
+  team(id: ID!): Team!
+  tickets: [Ticket]!
+  ticket(id: ID!): Ticket!
+  projects: [Project]!
+  project(id: ID!): Project!
+}
+type Mutation {
+  createUser(input: UserInput!): User!
+  createTicket(input: TicketInput!): Ticket!
+  createProject(input: ProjectInput!): Project!
+  createTeam(input: TeamInput!): Team!
+}
+
+input TicketInput {
+  name: String!
+  description: String!
+  point: String!
+  status: Int!
+}
+
+input UserInput {
+  email: String!
+  name: String!
+  username: String!
+  password: String!
+}
+
+input TeamInput {
+  name: String!
+  prefix: String!
+}
+
+input ProjectInput {
+  name: String!
+  description: String!
+  startTime: String!
+  endTime: String!
+}
+
+type Ticket {
+  id: Int!
+  name: String!
+  description: String!
+  point: String!
+  status: Int!
+  owners: [User]!
+  project: Project!
+}
+
+type User {
+  id: Int!
+  email: String!
+  name: String!
+  username: String!
+  password: String!
+  tickets: [Ticket]!
+  teams: [Team]!
+}
+
+type Team {
+  id: Int!
+  name: String!
+  prefix: String!
+  members: [User]!
+  projects: [Project]!
+}
+
+type Project {
+  id: Int!
+  name: String!
+  description: String!
+  startTime: String!
+  endTime: String!
+  tickets: [Ticket]!
+  teams: [Team]!
+}
