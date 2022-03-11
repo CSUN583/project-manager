@@ -11,11 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import comp583.project.manager.project.Project;
 import comp583.project.manager.user.User;
-
-import javax.persistence.Table;
 
 @Entity(name = "ticket")
 @Table(name = "tickets")
@@ -47,11 +46,12 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(String name, int point, int status, String description) {
+    public Ticket(String name, int point, int status, String description, Project project) {
         this.name = name;
         this.point = point;
         this.status = status;
         this.description = description;
+        this.project = project;
     }
 
     public String getName() {
@@ -109,5 +109,4 @@ public class Ticket {
     public void setProject(Project project) {
         this.project = project;
     }
-
 }

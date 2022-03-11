@@ -113,4 +113,12 @@ public class User {
         this.tickets = tickets;
     }
 
+    public void pushBackTicket(Ticket ticket){
+        this.tickets.add(ticket);
+    }
+
+    public void removeTicket(Ticket ticket){
+        this.tickets.remove(ticket);
+    }
+
 }

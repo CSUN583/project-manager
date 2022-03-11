@@ -13,13 +13,19 @@ type Mutation {
   createTicket(input: TicketInput!): Ticket!
   createProject(input: ProjectInput!): Project!
   createTeam(input: TeamInput!): Team!
+  addUserTicket(user_id: Int!, ticket_id: Int!): User!
+  updateTicket(input: TicketInput!): Ticket!
+  deleteUserTicket(user_id: Int!, ticket_id: Int!): Int!
+  deleteTicket(ticket_id: Int!): Int!
 }
 
 input TicketInput {
+  id: Int
   name: String!
   description: String!
   point: String!
   status: Int!
+  projectId: Int!
 }
 
 input UserInput {
