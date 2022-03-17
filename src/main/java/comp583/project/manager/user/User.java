@@ -113,4 +113,12 @@ public class User {
         this.tickets = tickets;
     }
 
+    public void addToTeam(Team team){
+        this.teams.add(team);
+    }
+
+    public void removeFromTeam(Team team){
+        this.teams.remove(team);
+    }
+
 }

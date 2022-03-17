@@ -42,10 +42,80 @@ public class MutationResolver implements GraphQLMutationResolver {
                 new Project(input.getName(), input.getDescription(), input.getStartTime(), input.getEndTime()));
     }
 
+    /*TEAM CREATE AND REMOVE*/
     @Transactional
     public Team createTeam(TeamInput input) {
         return teamRepository.saveAndFlush(
                 new Team(input.getName(), input.getPrefix()));
+    }
+
+    @Transactional
+    public Long removeTeam(Long team_id) {
+        teamRepository.deleteById(team_id);
+
+        return team_id;
+    }
+
+    /*TEAM ADD AND REMOVE USER*/
+    @Transactional
+    public Team addUserToTeam(Long user_id, Long team_id) {
+        Team currentTeam = teamRepository.getById(team_id);
+        User currentUser = userRepository.getById(user_id);
+        
+        currentTeam.addMember(currentUser);
+        currentUser.addToTeam(currentTeam);
+
+        teamRepository.save(currentTeam);
+        userRepository.save(currentUser);
+
+        return currentTeam;
+    }
+
+    @Transactional
+    public Team removeUserFromTeam(Long user_id, Long team_id) {
+        Team currentTeam = teamRepository.getById(team_id);
+        User currentUser = userRepository.getById(user_id);
+
+        currentTeam.removeMember(currentUser);
+        currentUser.removeFromTeam(currentTeam);
+
+        teamRepository.save(currentTeam);
+        userRepository.save(currentUser);
+
+        return currentTeam;
+        
+    }
+
+    /*PROJECT ADD AND REMOVE TEAM*/
+    @Transactional
+    public Project addTeamToProject(Long team_id, Long project_id) {
+
+        Team currentTeam = teamRepository.getById(team_id);
+        Project currentProject = projectRepository.getById(project_id);
+        
+        currentProject.addTeam(currentTeam);
+        currentTeam.addProject(currentProject);
+
+        teamRepository.save(currentTeam);
+        projectRepository.save(currentProject);
+        
+        return currentProject;
+        
+    }
+
+    @Transactional
+    public Project removeTeamFromProject(Long team_id, Long project_id) {
+        Team currentTeam = teamRepository.getById(team_id);
+        Project currentProject = projectRepository.getById(project_id);
+        
+        currentProject.removeTeam(currentTeam);
+        currentTeam.removeProject(currentProject);
+
+        teamRepository.save(currentTeam);
+        projectRepository.save(currentProject);
+        
+        return currentProject;
+        
     }
 
     @Transactional
@@ -56,6 +126,7 @@ public class MutationResolver implements GraphQLMutationResolver {
 
     @Transactional
     public User createUser(UserInput input) {
+        
         return userRepository.saveAndFlush(
                 new User(input.getName(), input.getUsername(), input.getEmail(), input.getPassword()));
     }
