@@ -13,18 +13,27 @@ type Mutation {
   createTicket(input: TicketInput!): Ticket!
   createProject(input: ProjectInput!): Project!
   createTeam(input: TeamInput!): Team!
+<<<<<<< HEAD
   removeTeam(team_id: Int!): Int!
   addUserToTeam(user_id: Int! team_id: Int!): Team!
   removeUserFromTeam(user_id: Int! team_id: Int!): Team!
   addTeamToProject(team_id: Long! project_id: Long!): Project!
   removeTeamFromProject(team_id: Long! project_id: Long!): Project!
+=======
+  addUserTicket(user_id: Int!, ticket_id: Int!): User!
+  updateTicket(input: TicketInput!): Ticket!
+  deleteUserTicket(user_id: Int!, ticket_id: Int!): Int!
+  deleteTicket(ticket_id: Int!): Int!
+>>>>>>> 143bcb4eac0050fda99394224c32a7e9da5b1cbf
 }
 
 input TicketInput {
+  id: Int
   name: String!
   description: String!
   point: String!
   status: Int!
+  projectId: Int!
 }
 
 input UserInput {

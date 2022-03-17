@@ -13,6 +13,7 @@ public class TicketInput {
     private int point;
     private int status;
     private String description;
+    private Long projectId;
 
     public Long getId() {
         return Id;
@@ -54,4 +55,11 @@ public class TicketInput {
         this.description = description;
     }
 
+    public Long getProjectId(){
+        return projectId;
+    }
+
+    public void setProjectId(Long projectId) {
+        this.projectId = projectId;
+    }
 }

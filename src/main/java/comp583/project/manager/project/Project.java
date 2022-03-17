@@ -121,6 +121,7 @@ public class Project {
         this.teams = teams;
     }
 
+<<<<<<< HEAD
     public void addTeam(Team team) {
         this.teams.add(team);
     }
@@ -129,4 +130,13 @@ public class Project {
         this.teams.remove(team);
     }
 
+=======
+    public void pushBackTicket(Ticket ticket){
+        this.tickets.add(ticket);
+    }
+
+    public void removeTicket(Ticket ticket){
+        this.tickets.remove(ticket);
+    }
+>>>>>>> 143bcb4eac0050fda99394224c32a7e9da5b1cbf
 }
