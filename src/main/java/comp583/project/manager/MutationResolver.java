@@ -172,4 +172,11 @@ public class MutationResolver implements GraphQLMutationResolver {
         return ticket_id;
     }
 
+    @Transactional
+    public int updateTicketStatus(Long ticket_id, int ticket_status){
+        Ticket ticket = ticketRepository.getById(ticket_id);
+        ticket.setStatus(ticket_status);
+        ticketRepository.save(ticket);
+        return ticket_status;
+    }
 }
