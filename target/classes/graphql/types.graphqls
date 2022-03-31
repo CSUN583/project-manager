@@ -76,8 +76,8 @@ type Team {
   id: Int!
   name: String!
   prefix: String!
-  members: [User]!
-  projects: [Project]!
+  members: [User]
+  projects: [Project]
 }
 
 type Project {
